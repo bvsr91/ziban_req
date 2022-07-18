@@ -1,0 +1,69 @@
+<mvc:View controllerName="com.ferrero.ibanchangeapp.controller.MyRequests"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:l="sap.ui.layout"
+    xmlns:u="sap.ui.unified">
+    <Page showHeader="false" enableScrolling="true" class="sapUiNoContentPadding" showNavButton="false">
+        <content>
+            <Title class="sapUiSmallMarginBegin sapUiSmallMarginTop" text="IBAN Change Request Status" level="H5"/>
+            <Table id="idrequestsData" alternateRowColors="true" items="{
+                path: 'requestData>/requestData'
+                }" sticky="ColumnHeaders,HeaderToolbar" popinLayout="GridSmall" 
+                contextualWidth="Auto"
+                growing="true"
+                growingThreshold="10">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        
+                        <Title hAlign="center" text="List of Completed/Pending Requests" level="H6"/>
+                        <ToolbarSpacer/>
+                        <SearchField liveChange=".onSearch" width="20%" />
+                        <Button tooltip="Add" icon="sap-icon://add" type="Transparent" press="onpressAddAccount"/>
+                        <Button tooltip="Home" icon="sap-icon://home" type="Transparent" press="onPressHome"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column >
+                        <header>
+                            <Text text="ID" />
+                        </header>
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <header>
+                            <Text text="Type" />
+                        </header>
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <header>
+                            <Text text="IBAN" />
+                        </header>
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <header>
+                            <Text text="Submission Date" />
+                        </header>
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <header>
+                            <Text text="Status"/>
+                        </header>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem >
+                        <cells>
+                            <ObjectIdentifier text="{requestData>id}" />
+                            <ObjectIdentifier text="{requestData>type}"/>
+                            <ObjectIdentifier text="{requestData>iban}" />
+                            <ObjectIdentifier text="{requestData>submissionDate}" />
+                            <ObjectStatus text="{requestData>status}" />
+                            <!-- <ObjectStatus text="{requestData>status}" state="{ path: 'requestData>status', formatter: '.formatter.statusState' }"/> -->
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>
